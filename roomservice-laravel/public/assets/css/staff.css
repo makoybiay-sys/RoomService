@@ -1,0 +1,487 @@
+/* ============================================================
+   STAFF DASHBOARD (Kitchen + Waiter) — Fixed + Animated
+   ============================================================ */
+
+.staff-body {
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding-top: 60px;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* ============================================================
+   TOPBAR
+   ============================================================ */
+.staff-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    z-index: 200;
+}
+
+.staff-topbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.staff-topbar-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+    line-height: 0;
+}
+.staff-topbar-logo img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+}
+
+.staff-topbar-title {
+    flex: 1;
+    min-width: 0;
+}
+.staff-topbar-title h1 {
+    font-size: 15px;
+    font-weight: 900;
+    color: var(--text-strong);
+    line-height: 1.2;
+}
+.staff-topbar-title p {
+    font-size: 10.5px;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.staff-topbar-title p strong {
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.staff-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    border-radius: 20px;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+}
+.live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+    animation: livePulse 1.6s ease-in-out infinite;
+}
+@keyframes livePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.5; transform: scale(1.4); }
+}
+
+.staff-theme-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+    border-radius: 9px;
+    flex-shrink: 0;
+}
+
+.staff-logout-btn {
+    padding: 8px 14px;
+    background: var(--danger);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    transition: background 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.staff-logout-btn:hover { background: #dc2626; }
+
+/* ============================================================
+   BOARD LAYOUT
+   ============================================================ */
+.staff-board {
+    padding: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.staff-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    align-items: start;
+}
+
+.staff-columns-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.staff-single-column {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+/* ============================================================
+   COLUMN
+   ============================================================ */
+.staff-column {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.staff-column-header {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--bg-alt);
+    border-radius: 16px 16px 0 0;
+}
+
+.col-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.staff-column-header h2 {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: var(--text-strong);
+    line-height: 1.2;
+    margin-bottom: 2px;
+}
+
+.col-sub {
+    font-size: 10.5px;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.col-count {
+    background: var(--primary);
+    color: #fff;
+    min-width: 26px;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 13px;
+    font-size: 11.5px;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    animation: countPop 0.3s ease;
+}
+
+@keyframes countPop {
+    0%   { transform: scale(0.7); }
+    50%  { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+.staff-column-body {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+/* ============================================================
+   TICKET CARD
+   ============================================================ */
+.staff-ticket {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--primary);
+    border-radius: 12px;
+    padding: 14px;
+    transition: all 0.2s;
+    animation: ticketIn 0.4s cubic-bezier(.2, .9, .3, 1.2);
+}
+
+@keyframes ticketIn {
+    0%   { opacity: 0; transform: translateY(-12px) scale(0.96); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.staff-ticket:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.ticket-pending    { border-left-color: #f59e0b; }
+.ticket-preparing  { border-left-color: #3b82f6; }
+.ticket-ready      { border-left-color: #10b981; }
+.ticket-delivering { border-left-color: #8b5cf6; }
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 8px;
+}
+
+.ticket-room {
+    font-size: 14px;
+    font-weight: 900;
+    color: var(--text-strong);
+}
+
+.ticket-floor {
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 700;
+    background: var(--card);
+    padding: 3px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ticket-code {
+    font-family: 'Courier New', monospace;
+    font-size: 10.5px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.ticket-info {
+    font-size: 11px;
+    color: var(--primary);
+    font-weight: 600;
+    background: var(--primary-light);
+    padding: 5px 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.ticket-info strong {
+    color: var(--primary-dark);
+    font-weight: 800;
+}
+
+.ticket-items {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+    padding: 10px 12px;
+    background: var(--card);
+    border-radius: 8px;
+}
+
+.ticket-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    color: var(--text);
+}
+
+.ticket-qty {
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 12px;
+    min-width: 24px;
+    flex-shrink: 0;
+}
+
+.ticket-name {
+    font-weight: 600;
+    flex: 1;
+}
+
+.ticket-total {
+    font-size: 13.5px;
+    font-weight: 900;
+    color: var(--primary);
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+/* ============================================================
+   TICKET BUTTONS
+   ============================================================ */
+.ticket-btn {
+    width: 100%;
+    border: none;
+    border-radius: 9px;
+    padding: 12px 14px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    font-family: inherit;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.ticket-btn:active { transform: scale(0.97); }
+
+.ticket-btn-pending {
+    background: #f59e0b;
+    color: #fff;
+}
+.ticket-btn-pending:hover { background: #d97706; }
+
+.ticket-btn-preparing {
+    background: #3b82f6;
+    color: #fff;
+}
+.ticket-btn-preparing:hover { background: #2563eb; }
+
+.ticket-btn-ready {
+    background: #10b981;
+    color: #fff;
+}
+.ticket-btn-ready:hover { background: #059669; }
+
+.ticket-btn-delivering {
+    background: #8b5cf6;
+    color: #fff;
+}
+.ticket-btn-delivering:hover { background: #7c3aed; }
+
+/* ⭐ "ARRIVED" button */
+.ticket-btn-arrived {
+    background: #f59e0b;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.ticket-btn-arrived::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 100%
+    );
+    animation: btnShimmer 2s ease-in-out infinite;
+}
+
+@keyframes btnShimmer {
+    0%   { left: -100%; }
+    100% { left: 200%; }
+}
+
+.ticket-btn-arrived:hover { background: #d97706; }
+
+/* Arrived state */
+.ticket-arrived {
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-left: 4px solid #10b981;
+    padding: 12px 14px;
+    border-radius: 10px;
+    color: #065f46;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+body.dark-mode .ticket-arrived {
+    color: #6ee7b7;
+    background: rgba(16, 185, 129, 0.15);
+}
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+.staff-empty {
+    text-align: center;
+    padding: 32px 16px;
+    color: var(--muted);
+}
+.staff-empty p {
+    font-size: 12.5px;
+    font-weight: 500;
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile First
+   ============================================================ */
+@media (max-width: 900px) {
+    .staff-topbar-inner { padding: 0 12px; gap: 8px; }
+    .staff-topbar-logo img { width: 38px; height: 38px; }
+    .staff-topbar-title h1 { font-size: 14px; }
+    .staff-topbar-title p { display: none; }
+    .live-badge { display: none; }
+
+    .staff-columns,
+    .staff-columns-2 {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 500px) {
+    .staff-board { padding: 10px; }
+    .staff-column-header { padding: 12px 14px; }
+    .staff-column-header h2 { font-size: 13px; }
+    .col-sub { display: none; }
+
+    .staff-logout-btn { padding: 7px 10px; font-size: 11px; }
+    .staff-theme-toggle { width: 32px; height: 32px; font-size: 14px; }
+
+    .ticket-btn { padding: 13px 14px; font-size: 13.5px; }
+}
